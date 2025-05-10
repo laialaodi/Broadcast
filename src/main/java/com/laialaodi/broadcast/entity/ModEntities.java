@@ -14,12 +14,12 @@ public class ModEntities {
 
   public static void register(IEventBus eventBus) {
     BLOCK_ENTITY_TYPES.register(eventBus);
-  }  public static final Supplier<BlockEntityType<MessageBlockEntity>> MESSAGE_BLOCK_ENTITY =
+  }
+
+  public static final Supplier<BlockEntityType<MessageBlockEntity>> MESSAGE_BLOCK_ENTITY =
       BLOCK_ENTITY_TYPES.register(
           "message_block_entity",
           () ->
               BlockEntityType.Builder.of(MessageBlockEntity::new, ModBlocks.MESSAGE_BLOCK.get())
                   .build(null));
-
-
 }

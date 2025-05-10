@@ -18,21 +18,23 @@ public class EventHandlers {
     BlockPos blockPos = event.getPos();
     ItemStack itemStack = player.getMainHandItem();
 
-    if (!level.isClientSide && level.getBlockState(blockPos).is(ModBlocks.MESSAGE_BLOCK)) {
-      BlockEntity blockEntity = level.getBlockEntity(blockPos);
-      if (blockEntity instanceof MessageBlockEntity messageBlockEntity) {
-        if (itemStack.getItem() instanceof MessageItem messageItem) {
-          String message = messageItem.getMessage();
-          level
-              .getServer()
-              .getPlayerList()
-              .getPlayers()
-              .forEach(p -> p.displayClientMessage(Component.literal(message), true));
-          messageBlockEntity.setLastMessage(message);
-          event.setCanceled(true);
-        } else if (itemStack.isEmpty()) {
-          player.displayClientMessage(Component.literal(messageBlockEntity.getLastMessage()), true);
-        }
+    if (level.isClientSide || level.getBlockState(blockPos).is(ModBlocks.MESSAGE_BLOCK)) {
+      return;
+    }
+
+    BlockEntity blockEntity = level.getBlockEntity(blockPos);
+    if (blockEntity instanceof MessageBlockEntity messageBlockEntity) {
+      if (itemStack.getItem() instanceof MessageItem messageItem) {
+        String message = messageItem.getMessage();
+        level
+            .getServer()
+            .getPlayerList()
+            .getPlayers()
+            .forEach(p -> p.displayClientMessage(Component.literal(message), true));
+        messageBlockEntity.setLastMessage(message);
+        event.setCanceled(true);
+      } else if (itemStack.isEmpty()) {
+        player.displayClientMessage(Component.literal(messageBlockEntity.getLastMessage()), true);
       }
     }
   }

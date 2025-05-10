@@ -1,0 +1,9 @@
+{
+  "block.broadcast.message_block": "消息方块",
+  "item.broadcast.message_item_1": "发送消息1",
+  "item.broadcast.message_item_2": "发送消息2",
+  "item.broadcast.message_item_3": "发送消息3",
+  "item.broadcast.message_item_4": "发送消息4",
+  "item.broadcast.message_item_5": "发送消息5",
+  "itemGroup.broadcast": "广播"
+}

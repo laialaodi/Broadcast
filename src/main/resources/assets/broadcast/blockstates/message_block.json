@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "broadcast:block/message_block"
+    }
+  }
+}

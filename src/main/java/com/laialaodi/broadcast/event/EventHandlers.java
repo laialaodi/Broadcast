@@ -18,7 +18,7 @@ public class EventHandlers {
     BlockPos blockPos = event.getPos();
     ItemStack itemStack = player.getMainHandItem();
 
-    if (level.isClientSide || level.getBlockState(blockPos).is(ModBlocks.MESSAGE_BLOCK)) {
+    if (level.isClientSide || !level.getBlockState(blockPos).is(ModBlocks.MESSAGE_BLOCK)) {
       return;
     }
 

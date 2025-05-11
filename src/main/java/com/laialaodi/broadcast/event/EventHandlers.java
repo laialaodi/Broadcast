@@ -3,6 +3,7 @@ package com.laialaodi.broadcast.event;
 import com.laialaodi.broadcast.block.ModBlocks;
 import com.laialaodi.broadcast.entity.MessageBlockEntity;
 import com.laialaodi.broadcast.item.MessageItem;
+import java.util.Objects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -26,8 +27,7 @@ public class EventHandlers {
     if (blockEntity instanceof MessageBlockEntity messageBlockEntity) {
       if (itemStack.getItem() instanceof MessageItem messageItem) {
         String message = messageItem.getMessage();
-        level
-            .getServer()
+        Objects.requireNonNull(level.getServer())
             .getPlayerList()
             .getPlayers()
             .forEach(p -> p.displayClientMessage(Component.literal(message), true));
